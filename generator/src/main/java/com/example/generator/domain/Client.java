@@ -22,5 +22,4 @@ public class Client {
     private String address;
 
     
-    
 }

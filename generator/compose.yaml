@@ -1,19 +1,49 @@
+# Docker Compose configuration for Contract Generator application
+# 
+# This file orchestrates a multi-container setup with PostgreSQL database and Spring Boot application.
+# 
+# SERVICES:
+#
+# postgres:
+#   - Image: Latest PostgreSQL database server
+#   - Environment variables:
+#     * POSTGRES_DB: Database name set to 'contractgen'
+#     * POSTGRES_PASSWORD: Database password set to 'kick'
+#     * POSTGRES_USER: Database user set to 'myuser'
+#   - Ports: Exposes port 5432 (PostgreSQL default port)
+#   - Used as backend storage for contract data
+#
+# app:
+#   - Builds from Dockerfile in the project root directory
+#   - Environment variables configure database connectivity:
+#     * SPRING_DATASOURCE_URL: JDBC connection string pointing to postgres service
+#     * SPRING_DATASOURCE_USERNAME: Database user credentials (myuser)
+#     * SPRING_DATASOURCE_PASSWORD: Database password credentials (kick)
+#   - Ports: Maps container port 8080 to host port 8080 for HTTP access
+#   - depends_on: Ensures postgres service starts before app service
+#
+# USAGE:
+# Run 'docker-compose up' to start both services.
+# The app service will be accessible at http://localhost:8080
+# PostgreSQL will be accessible internally via 'postgres:5432' hostname within the network.
+#
+# NOTE: The 'context: contextPath' in the build section should be corrected to '.'
+# to point to the current directory where the Dockerfile is located.
 services:
   postgres:
     image: 'postgres:latest'
     environment:
-      - 'POSTGRES_DB=mydatabase'
+      - 'POSTGRES_DB=contractgen'
       - 'POSTGRES_PASSWORD=kick'
       - 'POSTGRES_USER=myuser'
     ports:
-      - '5432'
+      - '5432:5432'
     
   app:
     build:
-      context: contextPath
       dockerfile: Dockerfile
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/mydatabase
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/contractgen
       SPRING_DATASOURCE_USERNAME: myuser
       SPRING_DATASOURCE_PASSWORD: kick
     ports: 

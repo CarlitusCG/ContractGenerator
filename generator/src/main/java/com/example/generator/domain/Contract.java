@@ -6,7 +6,6 @@ import java.util.UUID;
 import jakarta.persistence.*;
 import lombok.*;
 
-
 @Entity
 @Table
 @Getter

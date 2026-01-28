@@ -3,9 +3,13 @@ package com.example.generator.domain;
 import java.util.UUID;
 
 import jakarta.persistence.*;
+import lombok.*;
 
-@Table
 @Entity
+@Table
+@Getter
+@Setter
+
 public class User {
     @Id
     @GeneratedValue
@@ -21,6 +25,6 @@ public class User {
 
     private String email;
 
-    private String country; //countrycode
+    private String country; // countrycode
 
 }

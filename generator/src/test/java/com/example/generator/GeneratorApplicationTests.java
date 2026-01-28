@@ -8,6 +8,7 @@ class GeneratorApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("tests passed");
 	}
 
 }

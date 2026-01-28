@@ -16,7 +16,7 @@ public class Contract {
     @GeneratedValue
     private UUID id;
 
-    private StatusContrato status;
+    private StatusContract status;
 
     @OneToOne
     private User author;

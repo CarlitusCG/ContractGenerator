@@ -29,7 +29,7 @@ WORKDIR /app
 # The source path '/generator/target/generator-0.0.1-SNAPSHOT.jar' indicates the location of the JAR file
 # produced by the build process, which is expected to be found in the 'target' directory of the 'generator' project.
 # The destination path 'app.jar' specifies that the JAR file will be renamed to 'app.jar' in the current stage.
-COPY --from=build /generator/target/generator-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /generator/target/*.jar app.jar
 
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/app/app.jar"]
